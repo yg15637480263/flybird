@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				margin: 0;
+			}
+			
+			#outer{
+				width: 343px;
+				height: 480px;
+				background: url(img/bg.jpg) 0 0 no-repeat;
+				margin: 0 auto;
+				position: relative;
+			}
+			#score{
+				position: absolute;
+				top: 40px;
+				left: 50%;
+				-webkit-transform: translate3d(-50%,0,0);
+				-moz-transform: translate3d(-50%,0,0);
+				-ms-transform: translate3d(-50%,0,0);
+				-o-transform: translate3d(-50%,0,0);
+				transform: translate3d(-50%,0,0);
+				z-index: 10;
+			}
+			#head{
+				position: absolute;
+				left: 50%;
+				top: 90px;
+				/*width: 236px;*/
+				-webkit-transform: translate3d(-50%,0,0);
+				-moz-transform: translate3d(-50%,0,0);
+				-ms-transform: translate3d(-50%,0,0);
+				-o-transform: translate3d(-50%,0,0);
+				transform: translate3d(-50%,0,0);
+				-webkit-animation: headfly 1s ease-in-out infinite alternate;
+				-o-animation: headfly 1s ease-in-out infinite alternate;
+				animation: headfly 1s ease-in-out infinite alternate;
+			}
+			#head span{
+				position: absolute;
+				right: 0;
+				top: 20px;
+				width: 40px;
+				height: 26px;
+				background: url(img/bird0.png) 0 0 no-repeat;
+				-webkit-animation: fly 1s ease-in-out infinite alternate;
+				-o-animation: fly 1s ease-in-out infinite alternate;
+				animation: fly 1s ease-in-out infinite alternate;
+			}
+			@-webkit-keyframes headfly {
+				from { -webkit-transform: translate3d(-50%,0,0); }
+				to { -webkit-transform: translate3d(-50%,30px,0); }
+			}
+			@-o-keyframes headfly {
+				from { -webkit-transform: translate3d(-50%,0,0); }
+				to { -webkit-transform: translate3d(-50%,30px,0); }
+			}
+			@-moz-keyframes headfly {
+				from { -webkit-transform: translate3d(-50%,0,0); }
+				to { -webkit-transform: translate3d(-50%,30px,0); }
+			}
+			@keyframes headfly {
+				from { -webkit-transform: translate3d(-50%,0,0); }
+				to { -webkit-transform: translate3d(-50%,30px,0); }
+			}
+			
+			
+			@-webkit-keyframes fly {
+				0% { background: url(img/bird0.png) 0 0 no-repeat; }
+				100% { background: url(img/bird1.png) 0 0 no-repeat; }
+			}
+			@-o-keyframes fly {
+				0% { background: url(img/bird0.png) 0 0 no-repeat; }
+				100% { background: url(img/bird1.png) 0 0 no-repeat; }
+			}
+			@-moz-keyframes fly {
+				0% { background: url(img/bird0.png) 0 0 no-repeat; }
+				100% { background: url(img/bird1.png) 0 0 no-repeat; }
+			}
+			@keyframes fly {
+				0% { background: url(img/bird0.png) 0 0 no-repeat; }
+				100% { background: url(img/bird1.png) 0 0 no-repeat; }
+			}
+			#start{
+				position: absolute;
+				left: 50%;
+				top: 60%;
+				-webkit-transform: translate3d(-50%,0,0);
+				-moz-transform: translate3d(-50%,0,0);
+				-ms-transform: translate3d(-50%,0,0);
+				-o-transform: translate3d(-50%,0,0);
+				transform: translate3d(-50%,0,0);
+			}
+			#bird{
+				position: absolute;
+				left: 30px;
+				top: 40%;
+				display: none;
+				z-index: 10;
+			}
+			#slider{
+				position: absolute;
+				left: 0;
+				bottom: 43px;
+				width: 100%;
+				height: 14px;
+				overflow: hidden;
+			}
+			#slideInner{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 999px;
+				-webkit-animation: slideBar 2s linear infinite;
+				-o-animation: slideBar 2s linear infinite;
+				animation: slideBar 2s linear infinite;
+			}
+			#slider img{
+				float: left;
+			}
+			@-webkit-keyframes slideBar {
+				from { -webkit-transform: translate3d(0,0,0); }
+				to { -webkit-transform: translate3d(-343px,0,0); }
+			}
+			@-o-keyframes slideBar {
+				from { -webkit-transform: translate3d(0,0,0); }
+				to { -webkit-transform: translate3d(-343px,0,0); }
+			}
+			@-moz-keyframes slideBar {
+				from { -webkit-transform: translate3d(0,0,0); }
+				to { -webkit-transform: translate3d(-343px,0,0); }
+			}
+			@keyframes slideBar {
+				from { -webkit-transform: translate3d(0,0,0); }
+				to { -webkit-transform: translate3d(-343px,0,0); }
+			}
+			#pipeBox li{
+				position: absolute;
+				left: 100px;
+				top: 0;
+				height: 423px;
+				width: 62px;
+				list-style: none;
+			}
+			#pipeUp{
+				background: url(img/up_mod.png) 0 0 repeat-y;
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
+			#pipeUp img{
+				position: absolute;
+				bottom: 0;
+			}
+			#pipeDown{
+				background: url(img/down_mod.png) 0 0 repeat-y;
+				position: absolute;
+				bottom: 0;
+			}
+			.die{
+				-webkit-transition: all .5s linear;
+				-o-transition: all .5s linear;
+				transition: all .5s linear;
+				top: 393px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="outer">
+			<div id="score">
+				<img src="img/0.jpg"/>
+			</div>
+			<div id="head">
+				<img src="img/head.jpg"/>
+				<span></span>
+			</div>
+			<div id="start">
+				<img src="img/start.jpg"/>
+			</div>
+			<div id="bird">
+				<img src="img/down_bird0.png"/>
+			</div>
+			<div id="slider">
+				<div id="slideInner">
+					<img src="img/banner.jpg"/><img src="img/banner.jpg"/>
+				</div>
+			</div>
+			
+			<ul id="pipeBox" >
+				<!--<li>
+					<div id="pipeUp"><img src="img/up_pipe.png"/></div>
+					<div id="pipeDown"><img src="img/down_pipe.png"/></div>
+				</li>-->
+			</ul>
+			
+		</div>
+		
+		<script type="text/javascript">
+			var score = document.getElementById('score');
+			var head = document.getElementById('head');
+			var start = document.getElementById('start');
+			var bird = document.getElementById('bird');
+			var pipeBox = document.getElementById('pipeBox');
+			
+			var scoreNum = 0;
+			var pipeTime = null;
+			bird.img = bird.getElementsByTagName('img')[0];
+			
+			start.onclick = function(e){
+				var e = e||window.event;
+				this.style.display = "none";
+				head.style.display = "none";
+				bird.style.display = "block";
+				
+				bird.speed = 0;
+				
+//				对小鸟设置计时器,用于不断改变小鸟的速度及位置,监听分值的变化/监听小鸟与管道的碰撞情况（30毫秒监听一次）
+				bird.moveT = setInterval(function(){
+					bird.speed+=0.5;
+//					根据小鸟的速度的正负(为正时下落,为负时上飞),决定小鸟的图片的变化
+					if(bird.speed < 0){
+						bird.img.src = "img/up_bird0.png";
+					}else{
+						bird.img.src = "img/down_bird0.png";
+					}
+//					当小鸟的下落速度大于等于4的时候禁止速度再增加
+					if (bird.speed>=4){
+						bird.speed=4;
+					}
+//					判断有没有坠地，坠地则结束游戏
+					if(bird.offsetTop >= 393){
+						clearTimer();
+						alert("你挂了！");
+					}
+					bird.style.top = bird.offsetTop + bird.speed + "px";
+					
+					var pipes = document.getElementsByClassName('pipe');//随着小鸟的上下移动不断重新获取当前屏幕内的管道
+					for(var i=0; i<pipes.length; i++){
+//						结合for循环,将小鸟与每一个管道(上下管道)做碰撞检测
+						if(collide(bird,pipes[i])){
+//							如果撞到了则提示游戏结束,并清除屏幕中所有管道及小鸟的计时器
+							alert("撞到了,gameover!");
+							clearTimer();//该函数用来快速清除当前页面内所有的计时器
+							bird.className="die";
+							bird.style.top="393px";
+						}
+					}
+					
+//					改变计分图片
+					var scoreNumStr = String(scoreNum);//将分数值转换为字符串
+					score.innerHTML = "";//清空分数div中的图片
+//					使用for循环,遍历得到的scoreNumStr(分数字符串),将每一位上的数字取出来创建img标签，并设置为对应数字图片的路径
+					for(var j=0; j<scoreNumStr.length; j++){
+						var makeImg = new Image();
+						makeImg.src = "img/"+scoreNumStr[j]+".jpg";
+						score.appendChild(makeImg);
+					}
+					
+				},30)
+				
+				pipeTime = setInterval(createPipe,4000);//设置计时器，每隔四秒创建一对管道（上下管道）
+			}
+			
+			document.onmousedown = function(e){
+				var e = e||window.event;
+//				每次点击屏幕都将小鸟的速度直接改为-4(向上飞)
+				bird.speed = -4;
+				e.preventDefault();//阻止默认事件（连续点击选中图片）
+			}
+			
+			function createPipe(){
+				var pipe = document.createElement('li');
+				pipe.scoreFlag = true;
+				pipe.l = 343;//管道一开始在屏幕最右边的外面产生
+				pipe.style.left = pipe.l + "px";
+				var upHeight = rand(60,243);//生成上管道的高度，然后根据上管道的高度计算出下管道的高度
+				pipe.innerHTML = '<div id="pipeUp" class="pipe" style="height:'+upHeight+'px;"><img src="img/up_pipe.png"/></div><div style="height:'+(423-upHeight-90)+'px;" id="pipeDown" class="pipe"><img src="img/down_pipe.png"/></div>';
+				pipeBox.appendChild(pipe);
+				
+				
+				pipe.moveT = setInterval(function(){
+					
+					pipe.l -= 2;//管道从屏幕右边向左移动
+					if(pipe.l <= -62){
+//						当管道向左完全移出屏幕时,清除计时器,并清除li
+						clearInterval(pipe.moveT);
+						pipeBox.removeChild(pipe);
+						return;
+					}else if(pipe.l <= -32){
+//						由于小鸟的位置始终定位在距离屏幕左边30px处,这里是判断小鸟是否已经完全越过管道
+						if(pipe.scoreFlag){
+//							由于小鸟越过管道之后管道还要再继续向左运动一段距离,这段过程中是不能再执行加分动作了,这里通过pipe.scoreFlag的值来进行控制
+							scoreNum++;
+							pipe.scoreFlag = false;
+						}
+					}
+					pipe.style.left = pipe.l + "px";
+				},30,pipe)
+			}
+//			随机函数用来随机生成管道的高度
+			function rand(min,max){
+				return parseInt(Math.random()*(max-min+1)+min);
+			}
+//			这里是碰撞函数,用来检测小鸟与上下管道的碰撞
+			function collide(obj1,obj2){
+				var l1 = obj1.offsetLeft;
+				var r1 = l1+obj1.offsetWidth;
+				var t1 = obj1.offsetTop;
+				var b1 = t1+obj1.offsetHeight;
+				var l2 = obj2.offsetParent.offsetLeft;//注意这里使用的是offsetParent.offsetLeft即，上下管道所在li的offsetLeft
+				var r2 = l2+obj2.offsetWidth;
+				var t2 = obj2.offsetTop;
+				var b2 = t2+obj2.offsetHeight;
+				if (r1>l2&&l1<r2&&b1>t2&&t1<b2){
+					
+					return true;
+				}else{
+					
+					return false;
+				}
+			}
+//			创建清除计时器的函数,用来清除页面内所有的计时器
+			function clearTimer(){
+				var end = setTimeout(function(){},1);
+				var start = (end -100)>0?end-100:0;
+				for(var i=start;i<=end;i++){
+				    clearTimeout(i);
+				}
+			}
+			
+		</script>
+	</body>
+</html>
